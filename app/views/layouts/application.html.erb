@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BlogVltc</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8">
+    <title><%= yield(:title) %> | Blog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
   </head>
-
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-gray-100 font-sans">
+    <header class="bg-white border-b border-gray-200">
+      <nav class="container mx-auto px-4 py-2 flex items-center justify-between">
+        <div>
+          <%= link_to 'Blog', root_path, class: 'text-lg font-bold text-gray-800' %>
+        </div>
+        <% if user_signed_in? && @q %>
+          <div>
+            <%= search_form_for @q do |f| %>
+              <%= f.label :search %>
+              <%= f.search_field :title_or_author_name_cont %>
+              <%= f.submit "search" %>
+            <% end %>
+          </div>
+        <% end %>
+        <div>
+          <% if user_signed_in? %>
+            <%= link_to 'New Post', new_post_path, class: 'inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded' %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded' %>
+          <% else %>
+            <%= link_to 'Sign up', new_user_registration_path, class: 'inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded' %>
+            <%= link_to 'Login', new_user_session_path, class: 'inline-block bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded' %>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+    <main class="container mx-auto px-4 py-8">
       <%= yield %>
     </main>
+    <footer class="bg-white border-t border-gray-200">
+      <div class="container mx-auto px-4 py-2 text-sm text-gray-500">
+        &copy; <%= Time.now.year %> Blog
+      </div>
+    </footer>
   </body>
 </html>
