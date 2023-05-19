@@ -36,9 +36,7 @@ RUN bundle install && \
 COPY --link . .
 
 # Fix for Fly.io rake tasks
-RUN chmod +x /app/bin/* && \
-    sed -i 's/ruby.exe/ruby/' /app/bin/* && \
-    sed -i '/^#!/aDir.chdir File.expand_path("..", __dir__)' /app/bin/*
+RUN sed -i '/^#!/aDir.chdir File.expand_path("..", __dir__)' /bin/*
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
