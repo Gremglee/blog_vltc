@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+Role.destroy_all
+Role.create(id: 1, title: "admin")
+Role.create(id: 2, title: "editor")
+Role.create(id: 3, title: "writer")
+Role.create(id: 4, title: "readonly")

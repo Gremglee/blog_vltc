@@ -1,12 +1,30 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :posts
+  belongs_to :role
 
+  has_many :posts
+  has_many :comments
+
+  # list of searchable attributes
   def self.ransackable_attributes(auth_object = nil)
     ["name"]
+  end
+
+  def admin?
+    role.title == 'admin'
+  end
+
+  def editor?
+    role.title == 'editor'
+  end
+
+  def writer?
+    role.title == 'writer'
+  end
+
+  def readonly?
+    role.title == 'readonly'
   end
 end
