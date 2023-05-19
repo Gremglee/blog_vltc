@@ -12,4 +12,11 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
+
+  namespace :admin do
+    root to: "users#index"
+
+    resources :users
+    resources :posts
+  end
 end
