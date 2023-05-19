@@ -3,10 +3,7 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    field :posts,
-          [Types::PostType],
-          null: false,
-          description: 'All posts'
+    field :posts, [PostType], 'Returns all blog posts', null: false
 
     def posts
       Post.all
