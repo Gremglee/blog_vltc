@@ -8,7 +8,7 @@ class GraphqlController < ApplicationController
       current_user: current_user
     }
 
-    result = BlogSchema.execute(
+    result = BlogVltcSchema.execute(
       query,
       variables: variables,
       context: context,

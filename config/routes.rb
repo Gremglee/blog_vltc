@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
   root "posts#index"
 
-  if Rails.env.development?
-    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "graphql#execute"
-  end
+  resources :posts
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
 
   post "/graphql", to: "graphql#execute"
 
-  resources :posts
-
-  Rails.application.routes.draw do
-    devise_for :users, controllers: {
-      sessions: 'users/sessions'
-    }
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
 end
