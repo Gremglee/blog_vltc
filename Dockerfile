@@ -35,6 +35,9 @@ RUN bundle install && \
 # Copy application code
 COPY --link . .
 
+# Fix for Fly.io rake tasks
+RUN sed -i '/^#!/aDir.chdir File.expand_path("..", __dir__)' /app/bin/*
+
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
