@@ -1,0 +1,18 @@
+<%= form_with(model: [:admin, @user]) do |form| %>
+  <div class="mb-4">
+    <span class="block text-gray-700 text-sm font-bold mb-2">
+      ID: <%= @user.id %>
+    </span>
+    <span class="block text-gray-700 text-sm font-bold mb-2">
+      Email: <%= @user.email %>
+    </span>
+    <span class="block text-gray-700 text-sm font-bold mb-2">
+      Name: <%= @user.name %>
+    </span>
+
+    <%= form.select :role_id, options_from_collection_for_select(Role.all, :id, :title, @user.role_id), class: "shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="flex items-center justify-between">
+    <%= form.submit "Update", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
+<% end %>
