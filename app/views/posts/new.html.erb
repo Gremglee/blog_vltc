@@ -1,13 +1,1 @@
-<%= form_for @post do |f| %>
-  <div class="mb-4">
-    <%= f.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.text_field :title, class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-  </div>
-  <div class="mb-6">
-    <%= f.label :content, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.text_area :content, class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-y" %>
-  </div>
-  <div class="flex justify-end">
-    <%= f.submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-  </div>
-<% end %>
+<%= render "form", post: @post %>

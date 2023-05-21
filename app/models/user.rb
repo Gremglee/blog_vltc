@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
 
+  validates :email, :name, :role, presence: true
+
   # list of searchable attributes
   def self.ransackable_attributes(auth_object = nil)
     ["name"]

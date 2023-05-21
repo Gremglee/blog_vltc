@@ -2,4 +2,43 @@
   <h1 class="text-2xl font-bold mb-4"><%= @post.title %></h1>
   <p class="text-gray-600 mb-4">Author: <%= @post.author.email %></p>
   <p class="text-gray-800"><%= @post.content %></p>
+
+  <section class="actions py-10">
+    <%= link_to 'Edit', edit_post_path(@post), class: 'inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded' if policy(@post).update? %>
+    <%= link_to "Delete", post_path(@post), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure?" }, class: 'inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded' if policy(@post).destroy? %>
+  </section>
+
+  <section class="bg-white py-8 lg:py-16">
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-lg lg:text-2xl font-bold text-gray-900">Discussion
+          (<%= @post.comments.count %>)
+        </h2>
+      </div>
+    </div>
+    <br>
+
+    <%- @post.comments.each do |comment| %>
+      <article class="p-6 mb-6 text-base bg-white rounded-lg">
+        <div class="flex justify-between items-center mb-2">
+          <div class="flex items-center">
+            <p class="inline-flex items-center mr-3 text-sm text-gray-900 px-4">
+              <%= comment.user.name %>
+            </p>
+            <p class="text-sm text-gray-600">
+              <time pubdate datetime="2022-02-08" title="February 8th, 2022">
+                <%= comment.created_at.strftime("%B %d, %Y") %>
+              </time>
+            </p>
+          </div>
+        </div>
+        <p class="text-gray-500">
+          <%= comment.content %>
+        </p>
+      </article>
+      <br>
+    <% end %>
+
+    <%= render "comments/form", comment: @comment%>
+  </section>
 </div>

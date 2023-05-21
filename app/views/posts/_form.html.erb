@@ -1,0 +1,13 @@
+<div class="max-w-2xl mx-auto bg-gray-100">
+  <%= form_for @post do |f| %>
+    <div class="mb-4 bg-gray-100">
+      <%= f.text_field :title, placeholder: 'Title', class: "border-transparent outline-none appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="mb-6 bg-gray-100">
+      <%= f.text_area :content, placeholder: 'Begin writing your post...', rows: 20, class: "border-transparent outline-none appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-y" %>
+    </div>
+    <div class="flex justify-end">
+      <%= f.submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+</div>

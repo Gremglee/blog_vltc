@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "posts#index"
 
   resources :posts
+  resources :comments, only: [:create]
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'
@@ -17,6 +18,5 @@ Rails.application.routes.draw do
     root to: "users#index"
 
     resources :users
-    resources :posts
   end
 end

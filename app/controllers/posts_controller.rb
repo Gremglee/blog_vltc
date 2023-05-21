@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
+  before_action :get_post, only: [:show, :edit, :update, :destroy]
+
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:author).order(created_at: :asc)
+    @posts = @q.result(distinct: true).includes(:author).order(created_at: :desc)
     @pagy, @posts = pagy(@posts)
   end
 
   def show
-    @post = Post.find(params[:id])
+    @comment = Comment.new(post: @post, user: current_user)
 
     authorize @post
   end
@@ -25,23 +27,29 @@ class PostsController < ApplicationController
     authorize @post
   end
 
+  def edit
+    authorize @post
+  end
+
   def update
-    @post = Post.find(params[:id])
     authorize @post
 
-    @post.update_attributes(post_params)
-    redirect_to posts_path
+    @post.update(post_params)
+    redirect_to post_path(@post)
   end
 
   def destroy
-    @post = Post.find(params[:id])
     authorize @post
 
-    @post.destroy
+    @post.destroy!
     redirect_to action: :index
   end
 
   private
+
+  def get_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :content, :search)

@@ -1,0 +1,26 @@
+<div class="bg-white py-8 lg:py-16">
+  <%= form_for comment do |f| %>
+    <% if comment.errors.any? %>
+      <div id="error_explanation">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:
+      </h2>
+
+      <ul>
+        <% comment.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+      </div>
+    <% end %>
+
+    <%= f.hidden_field :post_id %>
+
+    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200">
+      <%= f.text_area :content, placeholder: "Write a comment...", required: true, rows: 6, class: "px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none" %>
+
+      <div class="actions">
+        <%= f.submit "Post comment", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      </div>
+    </div>
+  <% end %>
+</div>

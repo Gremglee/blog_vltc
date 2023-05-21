@@ -6,19 +6,23 @@ class PostPolicy < ApplicationPolicy
     @post = post
   end
 
-  def update?
-    user.admin? || user.editor? || post.user == user
+  def edit?
+    user.admin? || user.editor? || post.author == user
   end
 
-  def delete?
-    user.admin? || post.user == user
+  def update?
+    user.admin? || user.editor? || post.author == user
+  end
+
+  def destroy?
+    user.admin? || post.author == user
   end
 
   def create?
     !user.readonly?
   end
 
-  def read?
+  def show?
     true
   end
 end

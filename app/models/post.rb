@@ -3,6 +3,8 @@ class Post < ApplicationRecord
 
   has_many :comments
 
+  validates :content, :title, :author, presence: true
+
   def self.ransackable_associations(auth_object = nil)
     ["author"]
   end
