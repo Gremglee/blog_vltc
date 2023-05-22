@@ -4,7 +4,6 @@ RSpec.feature "Posts" do
   let!(:user) { create(:user, password: '123123') }
   let!(:post) { create(:post) }
 
-
   scenario "when a user views a post" do
     visit '/'
     fill_in 'Email', with: user.email
