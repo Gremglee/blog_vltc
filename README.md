@@ -23,7 +23,7 @@ Users have 4 roles: admin, editor, author, and reader. Each role has different p
 I wanted to demonstate testing at all levels: unit, integration, and feature. I have used RSpec, Capybara, FactoryBot, and Faker gems for testing. Usually, I would also use Rubocop for linting, but I have decided to skip it for this project. I have also used the gem shoulda-matchers for testing validations and associations. In a real-world project, I would also use VCR for testing external API calls and heavily rely on mocks and stubs for testing models and POROs without hitting the database.
 
 #GraphQL
-I have tested GraphQL queries and mutations using GraphiQL. You can access it here: https://blogvltc.fly.dev/graphiql. Please note that this route should be hidden in production, but I have left it open for testing purposes.
+I have tested GraphQL queries and mutations using GraphiQL. It is mounted at "/graphiql" in development environment.
 
 Since most of the app is server-side rendered, I have used GraphQL only as an additional API for posts and comments. I haven't fully integrated GraphQL with Devise, but I found that it can be done using the gem graphql_devise. I have chosen to protect the GraphQL API route with standard Devise authorization, although it can also be done with JWT tokens.
 
