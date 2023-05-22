@@ -15,7 +15,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def create?
-    !user.readonly?
+    !user.read_only?
   end
 
   def show?

@@ -41,6 +41,8 @@
       <br>
     <% end %>
 
-    <%= render "comments/form", comment: @comment%>
+    <%- if policy(@comment).create? %>
+      <%= render "comments/form", comment: @comment%>
+    <% end %>
   </section>
 </div>

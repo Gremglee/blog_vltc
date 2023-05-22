@@ -26,7 +26,7 @@ class User < ApplicationRecord
     role.title == 'writer'
   end
 
-  def readonly?
+  def read_only?
     role.title == 'readonly'
   end
 end
