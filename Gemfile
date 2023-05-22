@@ -82,6 +82,8 @@ group :test do
   gem "factory_bot_rails"
   gem "faker"
   gem "rspec-graphql_matchers"
+  gem "shoulda-matchers"
+  gem "capybara"
 end
 
 gem "dockerfile-rails", ">= 1.3", :group => :development
