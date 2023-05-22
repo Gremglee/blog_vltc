@@ -1,89 +1,49 @@
 require 'rails_helper'
 
-module Mutations
-  RSpec.describe CreatePost, type: :request do
+RSpec.describe Mutations::CreatePost, type: :request do
+  describe 'POST /graphql' do
     let(:user) { create(:user) }
+    let(:query) do
+      <<~GQL
+        mutation CreatePost($title: String!, $content: String!, $authorId: ID!) {
+          createPost(title: $title, content: $content, authorId: $authorId) {
+            post {
+              id
+              title
+              content
+            }
+            errors
+          }
+        }
+      GQL
+    end
 
     before do
       sign_in user
     end
 
-    describe '.resolve' do
-      it 'creates a post' do
-        expect do
-          post '/graphql', params: { query: query(author_id: user.id) }
-        end.to change { Post.count }.by(1)
-      end
+    it 'creates a new post' do
+      variables = {
+        title: 'New Post Title',
+        content: 'New Post Content',
+        authorId: user.id.to_s
+      }
 
-      it 'returns a post' do
-        post '/graphql', params: { query: query(author_id: user.id) }
-        json = JSON.parse(response.body)
-        data = json['data']['Post']
+      post '/graphql', params: { query: query, variables: variables }
 
-        expect(data).to include(
-          'id'              => be_present,
-          'title'           => 'Blog post title',
-          'content'         => 'Post content',
-          'author'          => { 'id' => user.id.to_s }
-        )
-      end
-    end
+      expect(response).to have_http_status(:success)
 
-    def query(author_id:)
-      <<~GQL
-        mutation {
-          createPost(
-            authorId: #{author_id}
-            title: Blog post title
-            genre: Post content'
-          ) {
-            id
-            title
-            content
-            author {
-              id
-            }
-          }
-        }
-      GQL
+      json_response = JSON.parse(response.body)
+      data = json_response['data']['createPost']
+      post = data['post']
+      errors = data['errors']
+
+      expect(errors).to be_empty
+      expect(post).to include(
+        'id' => be_present,
+        'title' => 'New Post Title',
+        'content' => 'New Post Content'
+      )
     end
   end
 end
-
-# module Posts
-#   RSpec.describe CreatePost, type: :request do
-#     describe '.resolve' do
-#       it 'creates a post' do
-#         author = create(:user)
-
-#         expect do
-#           post '/graphql', params: { query: query(author_id: author.id) }
-#         end.to change { Post.count }.by(1)
-#       end
-
-#       it 'returns a post' do
-#         author = create(:user)
-
-#         post '/graphql', params: { query: query(author_id: author.id) }
-#         json = JSON.parse(response.body)
-#         data = json['data']['Post']
-
-#         expect(data).to include(
-#           'id'              => be_present,
-#           'title'           => 'Blog post title',
-#           'content'         => 'Post content',
-#           'author'          => { 'id' => author.id.to_s }
-#         )
-#       end
-#     end
-
-#     def query(author_id:)
-#       <<~GQL
-#         mutation {
-#           createPost(
-#             authorId: #{author_id}
-#             title: Blog post title
-#             genre: Post content'
-#           ) {
-#             id
-#             title

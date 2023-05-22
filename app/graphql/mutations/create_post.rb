@@ -6,8 +6,7 @@ module Mutations
     argument :author_id, ID, required: true
 
     field :post, Types::PostType, null: true
-
-    type Types::PostType
+    field :errors, [String], null: false
 
     def resolve(title:, content:, author_id:)
       post = Post.new(title: title, content: content, author_id: author_id)
