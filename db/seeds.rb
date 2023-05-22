@@ -13,7 +13,7 @@ Role.create(id: 4, title: "readonly") unless Role.find(4)
 # default admin user
 User.create(id: 1, name: "Anton Kovalev", email: "admin@admin.com", password: "admin", role_id: 1) unless User.find(1)
 
-Post.find_or_create(
+Post.create(
   id: 1,
   author_id: 1,
   title: "5 Essential Tips for Productivity and Time Management",
