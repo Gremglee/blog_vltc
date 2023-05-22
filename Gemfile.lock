@@ -101,7 +101,7 @@ GEM
     graphiql-rails (1.9.0)
       railties
       sprockets-rails
-    graphql (2.0.21)
+    graphql (2.0.22)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.6)
@@ -193,11 +193,18 @@ GEM
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rspec (3.12.0)
+      rspec-core (~> 3.12.0)
+      rspec-expectations (~> 3.12.0)
+      rspec-mocks (~> 3.12.0)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
+    rspec-graphql_matchers (2.0.0.pre.rc.0)
+      graphql (~> 2.0)
+      rspec (~> 3.0)
     rspec-mocks (3.12.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
@@ -270,6 +277,7 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.3)
   ransack
   redis (~> 4.0)
+  rspec-graphql_matchers
   rspec-rails
   sprockets-rails
   stimulus-rails

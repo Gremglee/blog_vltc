@@ -34,15 +34,18 @@ class PostsController < ApplicationController
   def update
     authorize @post
 
-    @post.update(post_params)
-    redirect_to post_path(@post)
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   def destroy
     authorize @post
 
     @post.destroy!
-    redirect_to action: :index
+    redirect_to posts_path
   end
 
   private

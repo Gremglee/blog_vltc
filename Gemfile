@@ -56,12 +56,12 @@ gem "devise"
 gem "pundit"
 gem "pagy"
 gem "ransack"
-gem "pry"
-gem "byebug"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "pry"
+  gem "byebug"
 end
 
 group :development do
@@ -81,6 +81,7 @@ group :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "faker"
+  gem "rspec-graphql_matchers"
 end
 
 gem "dockerfile-rails", ">= 1.3", :group => :development

@@ -1,4 +1,4 @@
-class PostPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   attr_reader :current_user, :object_user
 
   def initialize(current_user, object_user)
