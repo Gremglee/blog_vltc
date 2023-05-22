@@ -11,10 +11,9 @@ Role.create(id: 3, title: "writer") unless Role.find(3)
 Role.create(id: 4, title: "readonly") unless Role.find(4)
 
 # default admin user
-User.create(id: 1, name: "Anton Kovalev", email: "admin@admin.com", password: "password", role_id: 1) unless User.find(1)
+User.find_or_initialize(name: "Anton Kovalev", email: "admin@admin.com", password: "password", role_id: 1).save
 
 Post.create(
-  id: 1,
   author_id: 1,
   title: "5 Essential Tips for Productivity and Time Management",
   content: "In today's fast-paced world, being productive and managing time effectively are crucial skills. Here are five essential tips to boost your productivity and make the most out of your time:
@@ -33,7 +32,6 @@ Post.create(
 )
 
 Post.create(
-  id: 2,
   author_id: 1,
   title: "The Power of Positive Thinking: How It Can Transform Your Life",
   content: "Positive thinking has the power to transform your life in profound ways. It goes beyond mere optimism and encompasses a mindset that focuses on finding solutions, embracing opportunities, and maintaining a hopeful outlook. Here's how the power of positive thinking can impact your life:
@@ -52,7 +50,6 @@ Post.create(
 )
 
 Post.create(
-  id: 3,
   author_id: 1,
   title: "Unleash Your Creativity: 7 Ways to Spark Innovation",
   content: "Creativity is a powerful force that fuels innovation and drives progress. Whether you're an artist, entrepreneur, or simply seeking to enhance your problem-solving skills, here are seven ways to unleash your creativity and spark innovation:
@@ -75,7 +72,6 @@ Post.create(
 )
 
 Post.create(
-  id: 4,
   author_id: 1,
   title: "Unleash Your Creativity: 7 Ways to Spark Innovation",
   content: "Effective communication is an essential skill that underpins success in various aspects of life. Whether you're engaging in personal relationships, collaborating in the workplace, or presenting ideas to an audience, mastering the art of communication is key. Here are some strategies to enhance your communication skills:
@@ -96,7 +92,6 @@ Post.create(
 )
 
 Post.create(
-  id: 5,
   author_id: 1,
   title: "Discovering Your Passion: A Journey of Self-Exploration",
   content: "Discovering your passion is a transformative journey of self-exploration. It involves identifying your interests, values, and what truly ignites your soul. Here are some steps to embark on this journey and uncover your passion:
@@ -119,7 +114,6 @@ Post.create(
 )
 
 Post.create(
-  id: 6,
   author_id: 1,
   title: "Finding Balance in a Hectic World: Strategies for Self-Care",
   content: "In today's fast-paced and demanding world, finding balance and prioritizing self-care is essential for overall well-being. Here are some strategies to help you find equilibrium and take care of yourself:
@@ -148,7 +142,6 @@ Post.create(
 )
 
 Post.create(
-  id: 7,
   author_id: 1,
   title: "Unleash Your Creativity: 7 Ways to Spark Innovation",
   content: "Change is inevitable in our ever-evolving world, and learning to embrace it is essential for personal growth and resilience. Here are some ways to embrace change and thrive in the face of uncertainty:
@@ -177,7 +170,6 @@ Post.create(
 )
 
 Post.create(
-  id: 8,
   author_id: 1,
   title: "The Benefits of Mindfulness: Cultivating Present-Moment Awareness",
   content: "Mindfulness, the practice of cultivating present-moment awareness, offers numerous benefits for our well-being and overall quality of life. Here are some of the benefits of incorporating mindfulness into your daily routine:
@@ -206,7 +198,6 @@ Post.create(
 )
 
 Post.create(
-  id: 9,
   author_id: 1,
   title: "Building Healthy Habits: Small Steps Towards a Happier You",
   content: "Building healthy habits is essential for enhancing well-being. Here are some key steps to help you cultivate healthier habits:
@@ -235,7 +226,6 @@ Post.create(
 )
 
 Post.create(
-  id: 10,
   author_id: 1,
   title: "The Power of Gratitude: Cultivating Appreciation for a Fulfilling Life",
   content: "Practicing gratitude has the power to transform your perspective and enhance your sense of fulfillment. Here are some ways to cultivate gratitude in your daily life:
@@ -264,7 +254,6 @@ Post.create(
 )
 
 Post.create(
-  id: 11,
   author_id: 1,
   title: 'Valutico: Revolutionizing Business Valuation with Advanced Technology',
   content: "Valutico is an innovative platform that is revolutionizing the field of business valuation through advanced technology. With its cutting-edge software and data-driven approach, Valutico offers a comprehensive and efficient solution for businesses and financial professionals. Here's how Valutico is transforming the world of business valuation:
@@ -285,7 +274,6 @@ Post.create(
 )
 
 Post.create(
-  id: 12,
   author_id: 1,
   title: "Unlocking Business Insights with Valutico's Business Valuation Platform",
   content: "Valutico's business valuation platform goes beyond traditional valuation methods, unlocking valuable insights that can drive informed decision-making. Here's how businesses and financial professionals can benefit from using Valutico:
@@ -306,7 +294,6 @@ Post.create(
 )
 
 Post.create(
-  id: 13,
   author_id: 1,
   title: "Unlocking Business Insights with Valutico's Business Valuation Platform",
   content: "Valutico is at the forefront of transforming the future of business valuation. With its advanced technology and data-driven approach, Valutico is reshaping the industry in several ways:

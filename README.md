@@ -13,8 +13,11 @@ This is a simple blog written with Rails 7 and deployed here: https://blogvltc.f
 #Seeds
 Default user roles, an admin user, and some posts are created by default. However, please note that seeds are not idempotent and should only be used for testing purposes.
 
-##Roles
+#Roles
 Users have 4 roles: admin, editor, author, and reader. Each role has different permissions. There is a user dashboard available for admins only, accessible here: https://blogvltc.fly.dev/admin/users. To access that page, use the default admin user: "admin@admin.com" with the password: "password".
+
+#Search
+Searchbar is available at the header. It searches through posts title and author names. It is implemented using the gem ransack.
 
 #Tests
 ##How to run tests
