@@ -11,7 +11,7 @@ Role.create(id: 3, title: "writer") unless Role.find(3)
 Role.create(id: 4, title: "readonly") unless Role.find(4)
 
 # default admin user
-User.create(id: 1, name: "Anton Kovalev", email: "admin@admin.com", password: "admin", role_id: 1) unless User.find(1)
+User.create(id: 1, name: "Anton Kovalev", email: "admin@admin.com", password: "password", role_id: 1) unless User.find(1)
 
 Post.create(
   id: 1,
