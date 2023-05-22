@@ -1,15 +1,19 @@
 module Admin
   class UsersController < BaseController
     def index
+      authorize :user_dashboard, :index?
+
       @users = User.all.order(id: :desc)
     end
 
     def edit
+      authorize :user_dashboard, :edit?
+
       @user = User.find(params[:id])
     end
 
     def update
-      #authorize @user
+      authorize :user_dashboard, :update?
 
       @user = User.find(params[:id])
 
